@@ -1,1 +1,1 @@
-Placeholder for anything.
+Placeholder to generate the folder.
