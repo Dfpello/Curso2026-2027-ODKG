@@ -855,50 +855,51 @@
     <section id="naming">
         <p class="eyebrow">04 · Resource Naming</p>
         <h2>Resource Naming Strategy</h2>
-            <div>
-                <p>To ensure consistency, interoperability, and alignment with Linked Data best practices, the <em>LA 311 Fieldnotes</em> knowledge graph follows a well-defined resource naming strategy. It uses a custom domain (not the Protégé default), separate paths for classes, properties, and each kind of individual, and property URIs that are entirely independent of class URIs.</p>
+        <div>
+            <p>To ensure consistency, interoperability, and alignment with Linked Data best practices, the <em>LA 311 Fieldnotes</em> knowledge graph follows a well-defined resource naming strategy. It separates the vocabulary (ontology) from the actual dataset instances (resources) using distinct HTTP paths.</p>
 
-                <h3>Base Namespace</h3>
-                <p>All resources are minted under a dedicated, persistent base namespace controlled by Group 06, distinct from the default Protégé namespace (<code style="font-family: var(--mono); font-size: .82rem;">http://www.semanticweb.org/…</code>):</p>
-                <p><code style="font-family: var(--mono); font-size: .9rem; background: var(--wash); padding: 4px 8px; border-radius: 4px; color: var(--teal-dark);">https://group06.org/la311/</code></p>
-                <p>Four distinct sub-paths are derived from this base, one per resource category:</p>
+            <h3>Base Namespace</h3>
+            <p>All resources are minted under a dedicated domain controlled by our project, distinct from standard application defaults:</p>
+            <p><code style="font-family: var(--mono); font-size: .9rem; background: var(--wash); padding: 4px 8px; border-radius: 4px; color: var(--teal-dark);">http://linkeddata.la311.com</code></p>
 
-                <h3>1 · Classes</h3>
-                <p>Path: <code style="font-family: var(--mono); font-size: .85rem; background: var(--wash); padding: 2px 6px; border-radius: 3px;">https://group06.org/la311/ontology/class/</code></p>
-                <p>Named in <strong>UpperCamelCase</strong>, e.g.:</p>
-                <ul class="plain-list">
-                    <li><code style="font-family: var(--mono); font-size: .85rem;">…/ontology/class/ServiceRequest</code></li>
-                    <li><code style="font-family: var(--mono); font-size: .85rem;">…/ontology/class/Department</code></li>
-                    <li><code style="font-family: var(--mono); font-size: .85rem;">…/ontology/class/Neighborhood</code></li>
-                    <li><code style="font-family: var(--mono); font-size: .85rem;">…/ontology/class/Location</code></li>
-                </ul>
+            <h3>1 · Ontology URIs (Vocabulary)</h3>
+            <p>Path: <code style="font-family: var(--mono); font-size: .85rem; background: var(--wash); padding: 2px 6px; border-radius: 3px;">http://linkeddata.la311.com/ontology#</code></p>
+            <p>We use hash URIs for defining classes and properties so the entire lightweight vocabulary can be retrieved in a single HTTP request. They match our exported schema exactly:</p>
+            <ul class="plain-list">
+                <li><strong>Classes (UpperCamelCase):</strong>
+                    <br><code style="font-family: var(--mono); font-size: .85rem;">.../ontology#ServiceRequest</code>
+                    <br><code style="font-family: var(--mono); font-size: .85rem;">.../ontology#Organization</code>
+                    <br><code style="font-family: var(--mono); font-size: .85rem;">.../ontology#AdministrativeRegion</code>
+                </li>
+                <li><strong>Properties (lowerCamelCase):</strong>
+                    <br><code style="font-family: var(--mono); font-size: .85rem;">.../ontology#hasLocation</code> <span style="color: var(--muted);">(object)</span>
+                    <br><code style="font-family: var(--mono); font-size: .85rem;">.../ontology#isWithin</code> <span style="color: var(--muted);">(object)</span>
+                    <br><code style="font-family: var(--mono); font-size: .85rem;">.../ontology#srNumber</code> <span style="color: var(--muted);">(datatype)</span>
+                    <br><code style="font-family: var(--mono); font-size: .85rem;">.../ontology#createdDate</code> <span style="color: var(--muted);">(datatype)</span>
+                </li>
+            </ul>
 
-                <h3>2 · Properties</h3>
-                <p>Path: <code style="font-family: var(--mono); font-size: .85rem; background: var(--wash); padding: 2px 6px; border-radius: 3px;">https://group06.org/la311/ontology/property/</code></p>
-                <p>Named in <strong>lowerCamelCase</strong>, independent of class names, e.g.:</p>
-                <ul class="plain-list">
-                    <li><code style="font-family: var(--mono); font-size: .85rem;">…/ontology/property/assignedTo</code> <span style="color: var(--muted);">(object)</span></li>
-                    <li><code style="font-family: var(--mono); font-size: .85rem;">…/ontology/property/locatedAt</code> <span style="color: var(--muted);">(object)</span></li>
-                    <li><code style="font-family: var(--mono); font-size: .85rem;">…/ontology/property/hasStatus</code> <span style="color: var(--muted);">(object)</span></li>
-                    <li><code style="font-family: var(--mono); font-size: .85rem;">…/ontology/property/srNumber</code> <span style="color: var(--muted);">(datatype)</span></li>
-                    <li><code style="font-family: var(--mono); font-size: .85rem;">…/ontology/property/createdDate</code> <span style="color: var(--muted);">(datatype)</span></li>
-                    <li><code style="font-family: var(--mono); font-size: .85rem;">…/ontology/property/requestType</code> <span style="color: var(--muted);">(datatype)</span></li>
-                </ul>
+            <h3>2 · Data URIs (Individuals)</h3>
+            <p>Path: <code style="font-family: var(--mono); font-size: .85rem; background: var(--wash); padding: 2px 6px; border-radius: 3px;">http://linkeddata.la311.com/resource/</code></p>
+            <p>We use slash URIs for the generated data instances, mapping them directly to their class and a unique dataset identifier:</p>
+            <ul class="plain-list">
+                <li><strong>Service Requests</strong> → <code style="font-family: var(--mono); font-size: .82rem;">.../resource/ServiceRequest/{SRNumber}</code><br>
+                    <span style="color: var(--muted); font-size: .82rem;">e.g. .../resource/ServiceRequest/1-5167495871</span></li>
+                <li><strong>Organizations</strong> → <code style="font-family: var(--mono); font-size: .82rem;">.../resource/Organization/{Nome}</code><br>
+                    <span style="color: var(--muted); font-size: .82rem;">e.g. .../resource/Organization/LASAN</span></li>
+                <li><strong>Administrative Regions</strong> → <code style="font-family: var(--mono); font-size: .82rem;">.../resource/AdministrativeRegion/{NC}_{CD}</code><br>
+                    <span style="color: var(--muted); font-size: .82rem;">e.g. .../resource/AdministrativeRegion/50_14</span></li>
+                <li><strong>Locations</strong> → <code style="font-family: var(--mono); font-size: .82rem;">.../resource/Location/{Latitude},{Longitude}</code><br>
+                    <span style="color: var(--muted); font-size: .82rem;">e.g. .../resource/Location/34.0579,-118.2759</span></li>
+            </ul>
 
-                <h3>3 · Individuals</h3>
-                <p>Each class of individual has its own dedicated sub-path under <code style="font-family: var(--mono); font-size: .85rem;">…/resource/</code>, keyed by a natural identifier from the source data:</p>
-                <ul class="plain-list">
-                    <li><strong>Service Requests</strong> → <code style="font-family: var(--mono); font-size: .82rem;">…/resource/service-request/{SRNumber}</code><br>
-                        <span style="color: var(--muted); font-size: .82rem;">e.g. …/resource/service-request/1-5167495871</span></li>
-                    <li><strong>Departments</strong> → <code style="font-family: var(--mono); font-size: .82rem;">…/resource/department/{DeptCode}</code><br>
-                        <span style="color: var(--muted); font-size: .82rem;">e.g. …/resource/department/LASAN</span></li>
-                    <li><strong>Neighborhoods</strong> → <code style="font-family: var(--mono); font-size: .82rem;">…/resource/neighborhood/{NCName}</code><br>
-                        <span style="color: var(--muted); font-size: .82rem;">e.g. …/resource/neighborhood/boyle-heights</span></li>
-                    <li><strong>Locations</strong> → <code style="font-family: var(--mono); font-size: .82rem;">…/resource/location/{ZipCode}</code><br>
-                        <span style="color: var(--muted); font-size: .82rem;">e.g. …/resource/location/90012</span></li>
-                </ul>
-            </div>
-            
+            <h3>3 · Content Negotiation</h3>
+            <p>Because Data URIs identify real-world concepts (like a physical civic issue or a department), we use <strong>303 See Other</strong> HTTP redirects to resolve them based on the requesting client:</p>
+            <ul class="plain-list">
+                <li><strong>Human Request</strong> (Accept: <code style="font-family: var(--mono); font-size: .82rem;">text/html</code>): Server redirects to an HTML page (e.g., <code style="font-family: var(--mono); font-size: .82rem;">/page/ServiceRequest/1234567</code>) displaying the ticket details.</li>
+                <li><strong>Machine Request</strong> (Accept: <code style="font-family: var(--mono); font-size: .82rem;">application/rdf+xml</code>): Server redirects to a data document (e.g., <code style="font-family: var(--mono); font-size: .82rem;">/data/ServiceRequest/1234567</code>) containing the raw semantic triples.</li>
+            </ul>
+        </div>
     </section>
 
     <script>

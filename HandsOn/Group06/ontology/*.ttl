@@ -1,0 +1,211 @@
+@prefix : <http://linkeddata.la311.com/ontology#> .
+@prefix @prefix la311: <http://linkeddata.la311.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix mod: <https://w3id.org/mod#> .
+@prefix la311: <http://www.owl-ontologies.com/la311#> .
+@base <http://linkeddata.la311.com/ontology#> .
+
+<http://linkeddata.la311.com/ontology#> rdf:type owl:Ontology ;
+			mod:createdWith <https://chowlk.linkeddata.es/> .
+
+#################################
+#    Object Properties
+#################################
+
+## la311:hasLocation
+la311:hasLocation rdf:type owl:ObjectProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range la311:Location ;
+		rdfs:label "has location" .
+
+## la311:responsible
+la311:responsible rdf:type owl:ObjectProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range la311:Organization ;
+		rdfs:label "responsible" .
+
+## la311:reportedBy
+la311:reportedBy rdf:type owl:ObjectProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range la311:Organization ;
+		rdfs:label "reported by" .
+
+## la311:reportedBy
+la311:reportedBy rdf:type owl:ObjectProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range la311:AnonymousPerson ;
+		rdfs:label "reported by" .
+
+## la311:assignedTo
+la311:assignedTo rdf:type owl:ObjectProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range la311:Service ;
+		rdfs:label "assigned to" .
+
+## la311:isWithin
+la311:isWithin rdf:type owl:ObjectProperty ;
+		rdfs:domain la311:Location ;
+		rdfs:range la311:AdministrativeRegion ;
+		rdfs:label "is within" .
+
+#################################
+#    Data Properties
+#################################
+
+## la311:srNumber
+la311:srNumber rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range xsd:string ;
+		rdfs:label "sr number" .
+
+## la311:requestType
+la311:requestType rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range xsd:string ;
+		rdfs:label "request type" .
+
+## la311:status
+la311:status rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range xsd:string ;
+		rdfs:label "status" .
+
+## la311:actionTaken
+la311:actionTaken rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range xsd:string ;
+		rdfs:label "action taken" .
+
+## la311:createdDate
+la311:createdDate rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range xsd:dateTime ;
+		rdfs:label "created date" .
+
+## la311:updatedDate
+la311:updatedDate rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range xsd:dateTime ;
+		rdfs:label "updated date" .
+
+## la311:serviceDate
+la311:serviceDate rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range xsd:dateTime ;
+		rdfs:label "service date" .
+
+## la311:closedDate
+la311:closedDate rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range xsd:dateTime ;
+		rdfs:label "closed date" .
+
+## la311:address
+la311:address rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:Location ;
+		rdfs:range xsd:string ;
+		rdfs:label "address" .
+
+## la311:latitude
+la311:latitude rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:Location ;
+		rdfs:range xsd:decimal ;
+		rdfs:label "latitude" .
+
+## la311:longitude
+la311:longitude rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:Location ;
+		rdfs:range xsd:decimal ;
+		rdfs:label "longitude" .
+
+## la311:name
+la311:name rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:Organization ;
+		rdfs:range xsd:string ;
+		rdfs:label "name" .
+
+## la311:name
+la311:name rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:Service ;
+		rdfs:range xsd:string ;
+		rdfs:label "name" .
+
+## la311:cd
+la311:cd rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:AdministrativeRegion ;
+		rdfs:range xsd:integer ;
+		rdfs:label "cd" .
+
+## la311:cdMember
+la311:cdMember rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:AdministrativeRegion ;
+		rdfs:range xsd:string ;
+		rdfs:label "cd member" .
+
+## la311:nc
+la311:nc rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:AdministrativeRegion ;
+		rdfs:range xsd:string ;
+		rdfs:label "nc" .
+
+## la311:ncName
+la311:ncName rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:AdministrativeRegion ;
+		rdfs:range xsd:string ;
+		rdfs:label "nc name" .
+
+## la311:apc
+la311:apc rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:AdministrativeRegion ;
+		rdfs:range xsd:string ;
+		rdfs:label "apc" .
+
+## la311:policePrecinct
+la311:policePrecinct rdf:type owl:DatatypeProperty ;
+		rdfs:domain la311:AdministrativeRegion ;
+		rdfs:range xsd:string ;
+		rdfs:label "police precinct" .
+
+#################################
+#    Classes
+#################################
+
+## la311:Location
+la311:Location rdf:type owl:Class ;
+	rdfs:label "Location" .
+
+## la311:ServiceRequest
+la311:ServiceRequest rdf:type owl:Class ;
+	rdfs:label "Service Request" .
+
+## la311:Organization
+la311:Organization rdf:type owl:Class ;
+	rdfs:label "Organization" .
+
+## la311:AnonymousPerson
+la311:AnonymousPerson rdf:type owl:Class ;
+	rdfs:label "Anonymous Person" .
+
+## la311:Service
+la311:Service rdf:type owl:Class ;
+	rdfs:label "Service" .
+
+## la311:AdministrativeRegion
+la311:AdministrativeRegion rdf:type owl:Class ;
+	rdfs:label "Administrative Region" .
+
+#################################
+#    Instances
+#################################
+
+#################################
+#    General Axioms
+#################################
+
