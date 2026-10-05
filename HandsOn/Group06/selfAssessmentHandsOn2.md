@@ -34,4 +34,3 @@
 
 ## Comments on the self-assessment
 
-*(If required)*
