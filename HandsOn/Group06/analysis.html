@@ -899,6 +899,14 @@
                 <li><strong>Human Request</strong> (Accept: <code style="font-family: var(--mono); font-size: .82rem;">text/html</code>): Server redirects to an HTML page (e.g., <code style="font-family: var(--mono); font-size: .82rem;">/page/ServiceRequest/1234567</code>) displaying the ticket details.</li>
                 <li><strong>Machine Request</strong> (Accept: <code style="font-family: var(--mono); font-size: .82rem;">application/rdf+xml</code>): Server redirects to a data document (e.g., <code style="font-family: var(--mono); font-size: .82rem;">/data/ServiceRequest/1234567</code>) containing the raw semantic triples.</li>
             </ul>
+
+            <h3>4 · External Linking Strategy</h3>
+            <p>To integrate our local knowledge graph with the broader Linked Open Data cloud, specific classes have been designated to link our data instances to external authoritative entities (such as Wikidata, DBpedia, or GeoNames) using <code style="font-family: var(--mono); font-size: .85rem; background: var(--wash); padding: 2px 6px; border-radius: 3px;">owl:sameAs</code>:</p>
+            <ul class="plain-list">
+                <li><strong>la311:AdministrativeRegion:</strong> Civic and geographic instances, such as specific Neighborhood Councils (e.g., Boyle Heights) or Police Precincts, will be linked to their corresponding geographic entities in Wikidata.</li>
+                <li><strong>la311:Organization:</strong> Instances representing Los Angeles city departments (e.g., LASAN, BSL) will link to their official Wikidata or DBpedia public agency records.</li>
+                <li><strong>la311:Location:</strong> Verified geographic identifiers, such as ZIP Codes, will link to external geographical databases like GeoNames.</li>
+            </ul>
         </div>
     </section>
 

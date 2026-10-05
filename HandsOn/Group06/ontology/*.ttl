@@ -25,23 +25,17 @@ la311:hasLocation rdf:type owl:ObjectProperty ;
 		rdfs:range la311:Location ;
 		rdfs:label "has location" .
 
+## la311:reportedBy
+la311:reportedBy rdf:type owl:ObjectProperty ;
+		rdfs:domain la311:ServiceRequest ;
+		rdfs:range la311:Agent ;
+		rdfs:label "reported by" .
+
 ## la311:responsible
 la311:responsible rdf:type owl:ObjectProperty ;
 		rdfs:domain la311:ServiceRequest ;
 		rdfs:range la311:Organization ;
 		rdfs:label "responsible" .
-
-## la311:reportedBy
-la311:reportedBy rdf:type owl:ObjectProperty ;
-		rdfs:domain la311:ServiceRequest ;
-		rdfs:range la311:Organization ;
-		rdfs:label "reported by" .
-
-## la311:reportedBy
-la311:reportedBy rdf:type owl:ObjectProperty ;
-		rdfs:domain la311:ServiceRequest ;
-		rdfs:range la311:AnonymousPerson ;
-		rdfs:label "reported by" .
 
 ## la311:assignedTo
 la311:assignedTo rdf:type owl:ObjectProperty ;
@@ -152,7 +146,7 @@ la311:cdMember rdf:type owl:DatatypeProperty ;
 ## la311:nc
 la311:nc rdf:type owl:DatatypeProperty ;
 		rdfs:domain la311:AdministrativeRegion ;
-		rdfs:range xsd:string ;
+		rdfs:range xsd:integer ;
 		rdfs:label "nc" .
 
 ## la311:ncName
@@ -187,11 +181,13 @@ la311:ServiceRequest rdf:type owl:Class ;
 
 ## la311:Organization
 la311:Organization rdf:type owl:Class ;
-	rdfs:label "Organization" .
+	rdfs:label "Organization" ;
+	rdfs:subClassOf la311:Agent .
 
 ## la311:AnonymousPerson
 la311:AnonymousPerson rdf:type owl:Class ;
-	rdfs:label "Anonymous Person" .
+	rdfs:label "Anonymous Person" ;
+	rdfs:subClassOf la311:Agent .
 
 ## la311:Service
 la311:Service rdf:type owl:Class ;
@@ -200,6 +196,10 @@ la311:Service rdf:type owl:Class ;
 ## la311:AdministrativeRegion
 la311:AdministrativeRegion rdf:type owl:Class ;
 	rdfs:label "Administrative Region" .
+
+## la311:Agent
+la311:Agent rdf:type owl:Class ;
+	rdfs:label "Agent" .
 
 #################################
 #    Instances
