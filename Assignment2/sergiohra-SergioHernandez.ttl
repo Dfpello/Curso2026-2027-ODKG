@@ -1,0 +1,13 @@
+@prefix ejercicio: <http://www.ejercicio.es/ejercicio#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ejercicio:Class01 ejercicio:includes ejercicio:Sensor029, ejercicio:Computer101 .
+
+ejercicio:Sensor029 ejercicio:hasMeasurement ejercicio:Measurement8401 .
+
+ejercicio:Measurement8401 ejercicio:hasTemperature 29 ;
+                          ejercicio:atTime "2010-06-12T12:00:12"^^xsd:dateTime .
+
+ejercicio:Computer101 ejercicio:hasOwner ejercicio:User10A .
+
+ejercicio:User10A ejercicio:hasName "Pedro" .
