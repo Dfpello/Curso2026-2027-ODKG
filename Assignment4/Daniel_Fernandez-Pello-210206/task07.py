@@ -53,8 +53,8 @@ Spanish: Repite el mismo ejercicio en SPARQL, devolviendo las variables ?c (clas
 English: Repeat the same exercise in SPARQL, returning the variables ?c (class) and ?sc (superclass)
 """
 
-query =
-""" SELECT ?c ?sc WHERE {
+query = """ 
+SELECT ?c ?sc WHERE {
     ?c a rdfs:Class.
     OPTIONAL {?c rdfs:subClassOf ?sc.}
 }
